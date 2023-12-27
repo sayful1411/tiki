@@ -18,8 +18,7 @@ class BusFactory extends Factory
     {
         return [
             'name' => fake()->word(),
-            'feature' => fake()->sentence(4),
-            'route' => fake()->word() . ' - ' . fake()->word()
+            'bus_type' => fake()->sentence(4),
         ];
     }
 }

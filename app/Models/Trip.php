@@ -10,23 +10,23 @@ class Trip extends Model
     use HasFactory;
 
     protected $fillable = [
-        'bus_id', 'starting_location_id', 'ending_location_id',
-        'trip_date', 'starting_time', 'arrival_time', 'round_trip',
-        'return_date'
+        'bus_id', 'route_id', 'trip_date', 'departure_time',
+        'arrival_time', 'fare_amount', 'round_trip', 'return_date', 'status'
     ];
 
-    public function location()
+    public function bus()
     {
-        return $this->belongsTo(Location::class);
+        return $this->belongsTo(Bus::class);
     }
 
-    public function startingLocation()
+    public function route()
     {
-        return $this->belongsTo(Location::class, 'starting_location_id');
+        return $this->belongsTo(Route::class);
     }
 
-    public function endingLocation()
+    public function users()
     {
-        return $this->belongsTo(Location::class, 'ending_location_id');
+        return $this->hasMany(User::class);
     }
+
 }

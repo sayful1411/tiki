@@ -14,13 +14,14 @@ return new class extends Migration
         Schema::create('trips', function (Blueprint $table) {
             $table->id();
             $table->foreignId('bus_id')->constrained()->cascadeOnDelete();
-            $table->foreignId('starting_location_id')->constrained('locations')->cascadeOnDelete();
-            $table->foreignId('ending_location_id')->constrained('locations')->cascadeOnDelete();
+            $table->foreignId('route_id')->constrained()->cascadeOnDelete();
             $table->date('trip_date');
-            $table->time('starting_time');
+            $table->time('departure_time');
             $table->time('arrival_time');
+            $table->decimal('fare_amount', 10, 2);
             $table->boolean('round_trip')->default(false);
             $table->date('return_date')->nullable();
+            $table->boolean('status')->default(true);
             $table->timestamps();
         });
     }

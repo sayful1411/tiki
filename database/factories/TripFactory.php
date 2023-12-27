@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use App\Models\Bus;
 use App\Models\Location;
+use App\Models\Route;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -18,13 +19,19 @@ class TripFactory extends Factory
      */
     public function definition(): array
     {
+        // Get or create a bus
+        $bus = Bus::inRandomOrder()->first() ?? Bus::factory()->create();
+
+        // Get or create a route
+        $route = Route::inRandomOrder()->first() ?? Route::factory()->create();
+
         return [
-            'bus_id' => Bus::factory()->create()->id,
-            'starting_location_id' => Location::factory()->create()->id,
-            'ending_location_id' => Location::factory()->create()->id,
+            'bus_id' => $bus->id,
+            'route_id' => $route->id,
             'trip_date' => fake()->date,
-            'starting_time' => fake()->time(),
+            'departure_time' => fake()->time(),
             'arrival_time' => fake()->time(),
+            'fare_amount' => fake()->randomFloat(2, 100, 10000),
             'round_trip' => fake()->boolean,
             'return_date' => fake()->boolean ? fake()->date : null,
         ];
