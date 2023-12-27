@@ -52,11 +52,11 @@ php artisan key:generate
 
 ```
 
->  **Important** I used SQLite database. So you don't need to setup a database connection. You can find the database in ***database/database.sqlite***
+>  **Important** I used SQLite database. So you don't need to setup a database connection. Just create a database in ***database/database.sqlite*** or when run migrate command it will ask to create database 
+
 
 > step 6: run migration
 
-  
 
 ```bash
 
